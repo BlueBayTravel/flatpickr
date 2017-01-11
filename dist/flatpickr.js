@@ -88,8 +88,8 @@ function Flatpickr(element, config) {
 		if (!self.config.enableTime) return;
 
 		var hours = parseInt(self.hourElement.value, 10) || 0,
-		    minutes = parseInt(self.minuteElement.value, 10) || 0,
-		    seconds = self.config.enableSeconds ? parseInt(self.secondElement.value, 10) || 0 : 0;
+			minutes = parseInt(self.minuteElement.value, 10) || 0,
+			seconds = self.config.enableSeconds ? parseInt(self.secondElement.value, 10) || 0 : 0;
 
 		if (self.amPM) hours = hours % 12 + 12 * (self.amPM.textContent === "PM");
 
@@ -256,9 +256,9 @@ function Flatpickr(element, config) {
 
 	function createNumberInput(inputClassName) {
 		var wrapper = createElement("div", "numInputWrapper"),
-		    numInput = createElement("input", "numInput " + inputClassName),
-		    arrowUp = createElement("span", "arrowUp"),
-		    arrowDown = createElement("span", "arrowDown");
+			numInput = createElement("input", "numInput " + inputClassName),
+			arrowUp = createElement("span", "arrowUp"),
+			arrowDown = createElement("span", "arrowDown");
 
 		numInput.type = "text";
 		wrapper.appendChild(numInput);
@@ -310,7 +310,7 @@ function Flatpickr(element, config) {
 
 	function createDay(className, date, dayNumber) {
 		var dateIsEnabled = isEnabled(date, true),
-		    dayElement = createElement("span", "flatpickr-day " + className, date.getDate());
+			dayElement = createElement("span", "flatpickr-day " + className, date.getDate());
 
 		dayElement.dateObj = date;
 
@@ -357,7 +357,7 @@ function Flatpickr(element, config) {
 		self.prevMonthDays = self.utils.getDaysinMonth((self.currentMonth - 1 + 12) % 12);
 
 		var daysInMonth = self.utils.getDaysinMonth(),
-		    days = window.document.createDocumentFragment();
+			days = window.document.createDocumentFragment();
 
 		var dayNumber = self.prevMonthDays + 1 - self.firstOfMonth;
 
@@ -652,7 +652,7 @@ function Flatpickr(element, config) {
 		var dateToCheck = self.parseDate(date, true); // timeless
 
 		var bool = self.config.enable.length > 0,
-		    array = bool ? self.config.enable : self.config.disable;
+			array = bool ? self.config.enable : self.config.disable;
 
 		for (var i = 0, d; i < array.length; i++) {
 			d = array[i];
@@ -721,10 +721,10 @@ function Flatpickr(element, config) {
 		if (self.selectedDates.length !== 1 || !e.target.classList.contains("flatpickr-day")) return;
 
 		var hoverDate = e.target.dateObj,
-		    initialDate = self.parseDate(self.selectedDates[0], true),
-		    rangeStartDate = Math.min(hoverDate.getTime(), self.selectedDates[0].getTime()),
-		    rangeEndDate = Math.max(hoverDate.getTime(), self.selectedDates[0].getTime()),
-		    containsDisabled = false;
+			initialDate = self.parseDate(self.selectedDates[0], true),
+			rangeStartDate = Math.min(hoverDate.getTime(), self.selectedDates[0].getTime()),
+			rangeEndDate = Math.max(hoverDate.getTime(), self.selectedDates[0].getTime()),
+			containsDisabled = false;
 
 		for (var t = rangeStartDate; t < rangeEndDate; t += self.utils.duration.DAY) {
 			if (!isEnabled(new Date(t))) {
@@ -745,7 +745,7 @@ function Flatpickr(element, config) {
 			self.days.childNodes[i].classList.remove("startRange", "inRange", "endRange", "notAllowed");
 
 			var minRangeDate = Math.max(self.minRangeDate.getTime(), rangeStartDate),
-			    maxRangeDate = Math.min(self.maxRangeDate.getTime(), rangeEndDate);
+				maxRangeDate = Math.min(self.maxRangeDate.getTime(), rangeEndDate);
 
 			e.target.classList.add(hoverDate < self.selectedDates[0] ? "startRange" : "endRange");
 
@@ -854,10 +854,10 @@ function Flatpickr(element, config) {
 		if (e && e.target !== self.timeContainer) return;
 
 		var calendarHeight = self.calendarContainer.offsetHeight,
-		    calendarWidth = self.calendarContainer.offsetWidth,
-		    input = self.altInput || self.input,
-		    inputBounds = input.getBoundingClientRect(),
-		    distanceFromBottom = window.innerHeight - inputBounds.bottom + input.offsetHeight;
+			calendarWidth = self.calendarContainer.offsetWidth,
+			input = self.altInput || self.input,
+			inputBounds = input.getBoundingClientRect(),
+			distanceFromBottom = window.innerHeight - inputBounds.bottom + input.offsetHeight;
 
 		var top = void 0;
 
@@ -872,19 +872,19 @@ function Flatpickr(element, config) {
 		}
 
 		if (!self.config.static && !self.config.inline) {
-			self.calendarContainer.style.top = top + "px";
+			self.calendarContainer.dataset.top = top + "px";
 
 			var left = window.pageXOffset + inputBounds.left;
 			var right = window.document.body.offsetWidth - inputBounds.right;
 
 			if (left + calendarWidth <= window.document.body.offsetWidth) {
-				self.calendarContainer.style.left = left + "px";
-				self.calendarContainer.style.right = "auto";
+				self.calendarContainer.dataset.left = left + "px";
+				self.calendarContainer.dataset.right = "auto";
 
 				self.calendarContainer.classList.remove("rightMost");
 			} else {
-				self.calendarContainer.style.left = "auto";
-				self.calendarContainer.style.right = right + "px";
+				self.calendarContainer.dataset.left = "auto";
+				self.calendarContainer.dataset.right = right + "px";
 
 				self.calendarContainer.classList.add("rightMost");
 			}
@@ -1309,7 +1309,7 @@ function Flatpickr(element, config) {
 		e.preventDefault();
 
 		var delta = Math.max(-1, Math.min(1, e.wheelDelta || -e.deltaY)),
-		    newYear = parseInt(e.target.value, 10) + delta;
+			newYear = parseInt(e.target.value, 10) + delta;
 
 		handleYearChange(newYear);
 		e.target.value = self.currentYear;
@@ -1366,10 +1366,10 @@ function Flatpickr(element, config) {
 		if (self.amPM && e.target === self.amPM) return e.target.textContent = ["AM", "PM"][e.target.textContent === "AM" | 0];
 
 		var min = Number(e.target.min),
-		    max = Number(e.target.max),
-		    step = Number(e.target.step),
-		    curValue = parseInt(e.target.value, 10),
-		    delta = Math.max(-1, Math.min(1, e.wheelDelta || -e.deltaY));
+			max = Number(e.target.max),
+			step = Number(e.target.step),
+			curValue = parseInt(e.target.value, 10),
+			delta = Math.max(-1, Math.min(1, e.wheelDelta || -e.deltaY));
 
 		var newValue = Number(curValue);
 
@@ -1419,8 +1419,8 @@ Flatpickr.defaultConfig = {
 	allowInput: false,
 
 	/*
- 	clicking on input opens the date(time)picker.
- 	disable if you wish to open the calendar manually with .open()
+	clicking on input opens the date(time)picker.
+	disable if you wish to open the calendar manually with .open()
  */
 	clickOpens: true,
 
@@ -1583,9 +1583,9 @@ Flatpickr.prototype = {
 		if (!date) return null;
 
 		var dateTimeRegex = /(\d+)/g,
-		    timeRegex = /^(\d{1,2})[:\s](\d\d)?[:\s]?(\d\d)?\s?(a|p)?/i,
-		    timestamp = /^(\d+)$/g,
-		    date_orig = date;
+			timeRegex = /^(\d{1,2})[:\s](\d\d)?[:\s]?(\d\d)?\s?(a|p)?/i,
+			timestamp = /^(\d+)$/g,
+			date_orig = date;
 
 		if (date.toFixed || timestamp.test(date)) // timestamp
 			date = new Date(date);else if (typeof date === "string") {
@@ -1597,7 +1597,7 @@ Flatpickr.prototype = {
 			} else if (this.config && this.config.parseDate) date = this.config.parseDate(date);else if (timeRegex.test(date)) {
 				// time picker
 				var m = date.match(timeRegex),
-				    hours = !m[4] ? m[1] // military time, no conversion needed
+					hours = !m[4] ? m[1] // military time, no conversion needed
 				: m[1] % 12 + (m[4].toLowerCase() === "p" ? 12 : 0); // am/pm
 
 				date = new Date();
@@ -1681,7 +1681,7 @@ if (!window.document.documentElement.classList && Object.defineProperty && typeo
 			function update(fn) {
 				return function (value) {
 					var classes = self.className.split(/\s+/),
-					    index = classes.indexOf(value);
+						index = classes.indexOf(value);
 
 					fn(classes, index, value);
 					self.className = classes.join(" ");
