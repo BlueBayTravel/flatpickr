@@ -1003,14 +1003,14 @@ function Flatpickr(element, config) {
 
 		self.isOpen = true;
 
-		if (!self.config.allowInput) {
+		/*if (!self.config.allowInput) {
 			(self.altInput || self.input).blur();
 			(self.config.noCalendar
 				? self.timeContainer
 				: self.selectedDateElem
 					? self.selectedDateElem
 					: self.days).focus();
-		}
+		}*/
 
 		(self.altInput || self.input).classList.add("active");
 		triggerEvent("Open");
