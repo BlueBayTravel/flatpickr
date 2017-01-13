@@ -1133,21 +1133,21 @@ function Flatpickr(element, config) {
 		}
 
 		if (!self.config.static && !self.config.inline) {
-			self.calendarContainer.dataset.top = `${top}px`;
+			self.calendarContainer.setAttribute('data-top', `${top}px`);
 
 			const left = window.pageXOffset + inputBounds.left;
 			const right = window.document.body.offsetWidth - inputBounds.right;
 
 			if (left + calendarWidth <= window.document.body.offsetWidth) {
-				self.calendarContainer.dataset.left = `${left}px`;
-				self.calendarContainer.dataset.right = "auto";
+				self.calendarContainer.setAttribute('left', `${left}px`);
+				self.calendarContainer.setAttribute('right', "auto");
 
 				self.calendarContainer.classList.remove("rightMost");
 			}
 
 			else {
-				self.calendarContainer.dataset.left = "auto";
-				self.calendarContainer.dataset.right = `${right}px`;
+				self.calendarContainer.setAttribute('left', "auto");
+				self.calendarContainer.setAttribute('right', `${right}px`);
 
 				self.calendarContainer.classList.add("rightMost");
 			}
